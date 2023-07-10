@@ -1,0 +1,113 @@
+body {  
+    box-sizing: border-box; 
+    padding: 0;
+    background-color: #232741;
+   
+}
+
+#bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    width: 100%;
+    height: 95vh;
+}
+
+main {
+    width: 90%;
+    padding: 0;
+    box-sizing: border-box;
+    height: 70vh;
+   
+}
+
+h1 {
+    font-size: 72px;
+    font-family: 'Harry Potter', sans-serif;
+    text-align: center;
+    margin-top: 40px;
+    color: #AA8855;
+    position: relative;
+    animation: fly 4s infinite linear;
+}
+
+@keyframes fly {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(20px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.table {
+    margin-top: 40px;
+    display: table;
+    width: 100%;
+    margin-left: 55px;
+    background-color: #333333;
+    color: #ffffff;
+    border-collapse: collapse;
+}
+
+.table-row {
+    display: table-row;
+}
+
+.table-cell {
+    display: table-cell;
+    padding: 10px;
+    border: 1px solid #ffffff;
+    font-family: 'Lobster', cursive;
+}
+
+.table-cell:nth-child(odd) {
+    font-weight: bold;
+    background-color: #AA8855;
+    font-size: 18px;
+}
+
+.more-info {
+    display: inline-block;
+    margin-left: 10px;
+    color: #ffffff;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+}
+
+.more-info:hover {
+    color: #AA8855;
+    transform: scale(1.1);   
+}
+
+@media (max-width: 768px) {
+    .table {
+        width: 100%;
+        margin: auto 20px;
+    }
+
+    .table-row {
+        
+        display: block;
+        margin-bottom: 10px;
+        padding: 5px;
+    }
+    .table-cell {
+        display: block;
+        padding: 0;
+        padding: 5px;
+    }
+    .table-cell:nth-child(odd) {
+        font-weight: normal;
+        background-color: #AA8855;
+        padding: 5px;
+    }
+}
+
+/* assdasasddadsa */

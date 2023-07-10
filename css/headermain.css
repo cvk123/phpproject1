@@ -1,0 +1,41 @@
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: rgb(3, 1, 16);
+}
+
+.logo {
+    flex-grow: 1;
+}
+
+.logo img {
+    width: 50px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+nav {
+    margin-right: 20px;
+}
+
+nav li {
+    display: inline-block;
+    list-style-type: none;
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 22px;
+}
+
+.menu-icon {
+    display: none;
+}
+
+.cursor {
+    width: 50px;
+}
+

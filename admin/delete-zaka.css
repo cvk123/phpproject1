@@ -1,0 +1,86 @@
+body {  
+    box-sizing: border-box; 
+    padding: 0;
+    background-color: #232741;
+   
+}
+
+#bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    width: 100%;
+    height: 95vh;
+}
+
+
+
+
+.delete-form {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+}
+
+p {
+    
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.buttons {
+    display: flex;
+}
+
+button.smazat {
+    background-color: #AA0000;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+
+
+a.zrusit {
+    background-color: #666666;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+    
+}
+
+a.zrusit:hover {
+    background-color: #555555;
+    scale: 1.1;
+}
+
+
+  
+button.smazat:hover {
+    background-color: #FF4D4D;
+    color: #fff;
+  }
+  
+button.smazat:hover::before {
+    content: "⚠️ ";
+    font-size: 18px;
+  }
+  
+button.smazat:hover::after {
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 10px;
+  }

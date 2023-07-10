@@ -1,0 +1,45 @@
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #232741;
+    height: 70px;
+    z-index: -2;
+    border-bottom: 3px solid #AA8855;
+}
+
+.logo {
+    flex-grow: 1;
+}
+
+.logo img {
+    width: 50px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+nav {
+    margin-right: 20px;
+}
+
+nav li {
+    display: inline-block;
+    list-style-type: none;
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 22px;
+}
+
+.menu-icon {
+    display: none;
+}
+
+.cursor {
+    width: 50px;
+}
+
+
