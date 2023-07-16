@@ -1,0 +1,78 @@
+body {  
+    box-sizing: border-box; 
+    padding: 0;
+    background-color: #232741;
+    
+}
+
+#bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    width: 100%;
+    height: 95vh;
+}
+
+h1 {
+    font-size: 60px;
+    font-family: 'Harry Potter', sans-serif;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #AA8855;
+    position: relative;
+}
+
+.add-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 85vh;
+}
+
+.container {
+    max-width: 700px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #eee;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;    
+}
+
+
+input[type="submit"] {
+    background-color: #AA8855;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+input[type="submit"]:hover {
+    background-color: #8C6E42;
+}
+
+
+label {
+    font-size: 22px;
+    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
+}
