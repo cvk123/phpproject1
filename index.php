@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./css/indexmain.css">
     <link rel="stylesheet" href="./css/footermain.css">
     <script src="https://kit.fontawesome.com/2e503376a7.js" crossorigin="anonymous"></script>
+    <link rel="cv icon" href="./img/logo.jpg" type="img">
     <title>Uvod</title>
 </head>
 

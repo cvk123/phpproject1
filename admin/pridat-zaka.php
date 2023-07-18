@@ -2,6 +2,13 @@
 
 require "../assets/database.php";
 require "../assets/zak.php";
+require "../assets/auth.php";
+
+    session_start();
+    
+    if(!isLoggedIn()){
+        die("Musíš se přihlásit!");
+    }
 
 $first_name = null;
 $second_name = null;
@@ -37,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../query/header-query.css">
     <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="formular.css">
+    <link rel="stylesheet" href="../css/formular.css">
     <script src="https://kit.fontawesome.com/2e503376a7.js" crossorigin="anonymous"></script>
     <title>Přidat žáka</title>
 </head>

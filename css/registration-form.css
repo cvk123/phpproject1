@@ -56,7 +56,7 @@ textarea {
 }
 
 
-input[type="submit"] {
+button[type="submit"] {
     background-color: #AA8855;
     color: #fff;
     padding: 10px 20px;
@@ -66,7 +66,7 @@ input[type="submit"] {
     font-size: 20px;
 }
 
-input[type="submit"]:hover {
+button[type="submit"]:hover {
     background-color: #8C6E42;
 }
 

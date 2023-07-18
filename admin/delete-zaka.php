@@ -2,6 +2,13 @@
 
 require "../assets/zak.php";
 require "../assets/database.php";
+require "../assets/auth.php";
+
+    session_start();
+    
+    if(!isLoggedIn()){
+        die("Musíš se přihlásit!");
+    }
 
 $connection = connectionDB();
 
@@ -20,7 +27,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../query/header-query.css">
     <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="delete-zaka.css">
+    <link rel="stylesheet" href="../css/delete-zaka.css">
     <script src="https://kit.fontawesome.com/2e503376a7.js" crossorigin="anonymous"></script>
     <title>Smazat žáka</title>
 </head>

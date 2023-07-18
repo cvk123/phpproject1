@@ -2,6 +2,14 @@
 
     require "../assets/database.php";
     require "../assets/zak.php";
+    require "../assets/auth.php";
+
+    session_start();
+    
+    if(!isLoggedIn()){
+        die("Musíš se přihlásit!");
+    }
+
 
     $connection = connectionDB();
     $students = getALLStudents($connection, "id, first_name, second_name");
@@ -19,7 +27,7 @@
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../query/header-query.css">
     <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="zaci.css">
+    <link rel="stylesheet" href="../css/zaci.css">
     <script src="https://kit.fontawesome.com/2e503376a7.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
