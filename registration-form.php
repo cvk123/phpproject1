@@ -1,4 +1,7 @@
-
+<?php
+    $queryString = $_SERVER['QUERY_STRING'];
+    parse_str($queryString, $parameters);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,15 +17,15 @@
     <link rel="cv icon" href="./img/logo.jpg" type="img">
     <script src="https://kit.fontawesome.com/2e503376a7.js" crossorigin="anonymous"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-...
+
 
     <title>registration</title>
 </head>
 
 <body>
-<div id="bg"></div>
+    <div id="bg"></div>
 
-    
+
 
     <?php require "assets/header.php"; ?>
 
@@ -30,7 +33,17 @@
         <section class="add-form">
             <div class="container">
                 <h1>Zaregistrovat se</h1>
-                
+
+                <?php
+                if (isset($parameters["error"])) {
+                    switch ($parameters["error"]) {
+                        case "register-failed":
+                            print("<span class='error'>Musíš správně potvrdit Captchu!</span>");
+                            break;
+                    }
+                }
+                ?>
+
                 <form action="admin/after-registration.php" method="POST" class="harry-potter-form">
                     <div class="form-group">
                         <input type="text" name="first-name" placeholder="Křestní jméno" required>
@@ -49,9 +62,8 @@
                         <input type="password" name="password1" placeholder="Zadejte heslo znovu" required>
                     </div>
                     <div class="row">
-                    <div class="g-recaptcha"            
-                        data-sitekey="6Lc-aTInAAAAAELxiD5TMq7KNjOVk_MT3GMaxM53">  
-                    </div>                                       
+                        <div class="g-recaptcha" data-sitekey="6Lc-aTInAAAAAELxiD5TMq7KNjOVk_MT3GMaxM53">
+                        </div>
                     </div>
                     <div class="form-group">
                         <button type="submit" name="submit">Zaregistrovat se</button>
@@ -60,14 +72,14 @@
             </div>
         </section>
     </main>
-    
-<?php require "assets/footer.php"; ?>
 
-<script src="/js/header.js"></script>
-<script src="/js/particles.min.js"></script>
-<script src="/js/stars.js"></script>
-    
-    
+    <?php require "assets/footer.php"; ?>
+
+    <script src="js/header.js"></script>
+    <script src="js/particles.min.js"></script>
+    <script src="js/stars.js"></script>
+
+
 </body>
 
 </html>

@@ -36,6 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <!DOCTYPE html>
 <html lang="cs">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -46,21 +47,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/formular.css">
     <script src="https://kit.fontawesome.com/2e503376a7.js" crossorigin="anonymous"></script>
+    <link rel="cv icon" href="../img/logo.jpg" type="img">
     <title>Přidat žáka</title>
 </head>
+
 <body>
     <div id="bg"></div>
 
-    
+
 
     <?php require "../assets/admin-header.php"; ?>
 
     <main>
-    
+
         <section class="add-form">
-            
+
             <div class="container">
-            <h1>Přidej žáka</h1>
+                <h1>Přidej žáka</h1>
                 <?php require "../assets/formular-zak.php"; ?>
             </div>
         </section>
@@ -72,4 +75,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <script src="../js/particles.min.js"></script>
     <script src="../js/stars.js"></script>
 </body>
+
 </html>

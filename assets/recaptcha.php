@@ -33,7 +33,6 @@ function verifyRecaptcha($response) {
     $recaptchaResult = json_decode($recaptchaResult);
 
     if (!$recaptchaResult->success) {
-        echo "Ověření reCAPTCHA selhalo, zkuste to znovu.";
         return false;
     }
 
@@ -41,3 +40,4 @@ function verifyRecaptcha($response) {
 }
 
 ?>
+

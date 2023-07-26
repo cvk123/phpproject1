@@ -51,6 +51,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -61,21 +62,23 @@
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/formular.css">
     <script src="https://kit.fontawesome.com/2e503376a7.js" crossorigin="anonymous"></script>
+    <link rel="cv icon" href="../img/logo.jpg" type="img">
     <title>Editovat žáka</title>
 </head>
+
 <body>
     <div id="bg"></div>
 
-    
+
 
     <?php require "../assets/admin-header.php"; ?>
 
     <main>
-    
+
         <section class="add-form">
-            
+
             <div class="container">
-            <h1>Editovat žáka</h1>
+                <h1>Editovat žáka</h1>
                 <?php require "../assets/formular-zak.php"; ?>
             </div>
         </section>
@@ -87,4 +90,5 @@
     <script src="../js/particles.min.js"></script>
     <script src="../js/stars.js"></script>
 </body>
+
 </html>

@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
         redirectUrl("/skola-project/admin/zaci.php");
     } else {
-        echo "Uživatele se nepodařilo vytvořit";
+        redirectUrl("/skola-project/registration-form.php?error=register-failed");
     }
     
 }

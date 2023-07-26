@@ -64,6 +64,7 @@ button[type="submit"] {
     border-radius: 5px;
     cursor: pointer;
     font-size: 20px;
+    margin-top: 10px;
 }
 
 button[type="submit"]:hover {
@@ -75,4 +76,10 @@ label {
     font-size: 22px;
     font-weight: bold;
     font-family: 'Open Sans', sans-serif;
+}
+
+span.error {
+    color:red;
+    font-size: 18px;
+    font-weight: bold;
 }

@@ -20,6 +20,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,8 +30,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/delete-zaka.css">
     <script src="https://kit.fontawesome.com/2e503376a7.js" crossorigin="anonymous"></script>
+    <link rel="cv icon" href="../img/logo.jpg" type="img">
     <title>Smazat žáka</title>
 </head>
+
 <body>
 
     <div id="bg"></div>
@@ -47,14 +50,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 </div>
             </form>
         </section>
-    </main>       
-   
-   <?php require "../assets/footer.php"; ?>
+    </main>
 
-   <script src="../js/header"></script>
-   <script src="../js/particles.min.js"></script>
-   <script src="../js/stars.js"></script>
+    <?php require "../assets/footer.php"; ?>
+
+    <script src="../js/header"></script>
+    <script src="../js/particles.min.js"></script>
+    <script src="../js/stars.js"></script>
 </body>
+
 </html>
-
-
