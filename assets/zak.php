@@ -1,6 +1,6 @@
 <?php
 
-    require "url.php";
+
 
 /**
  *
@@ -13,11 +13,12 @@
  *
  */
 
-function getStudent($connection, $id, $columns = "*") {
+function getStudent($connection, $id, $columns = "*")
+{
     $sql = "SELECT $columns
             FROM student
             WHERE id = ?";
-   
+
     $stmt = mysqli_prepare($connection, $sql);
 
 
@@ -27,7 +28,7 @@ function getStudent($connection, $id, $columns = "*") {
         mysqli_stmt_bind_param($stmt, "i", $id);
 
 
-        if(mysqli_stmt_execute($stmt)) {
+        if (mysqli_stmt_execute($stmt)) {
             $result = mysqli_stmt_get_result($stmt);
             return mysqli_fetch_array($result, MYSQLI_ASSOC);
         }
@@ -46,11 +47,12 @@ function getStudent($connection, $id, $columns = "*") {
  * @param string  $college - Kolej žáka
  * @param integer $id - ID žáka
  *
- * @return void 
+ * @return boolean true, pokud se update povedl, jinak false
  *
  */
 
-function udpateStudent($connection, $first_name, $second_name, $age, $life, $college, $id){
+function udpateStudent($connection, $first_name, $second_name, $age, $life, $college, $id)
+{
 
     $sql = "UPDATE student
             SET first_name = ?,
@@ -62,16 +64,14 @@ function udpateStudent($connection, $first_name, $second_name, $age, $life, $col
 
     $stmt = mysqli_prepare($connection, $sql);
 
-        if (!$stmt) {
-            echo mysqli_error($connection);
-        } else {
-            mysqli_stmt_bind_param($stmt, "ssissi", $first_name, $second_name, $age, $life, $college, $id);
+    if (!$stmt) {
+        echo mysqli_error($connection);
+    } else {
+        mysqli_stmt_bind_param($stmt, "ssissi", $first_name, $second_name, $age, $life, $college, $id);
 
-       if (mysqli_stmt_execute($stmt)) {
-
-          redirectUrl("/databaze/admin/jeden-zak.php?id=$id");
-            
-       }
+        if (mysqli_stmt_execute($stmt)) {
+            return true;
+        }
     }
 }
 
@@ -82,14 +82,15 @@ function udpateStudent($connection, $first_name, $second_name, $age, $life, $col
  * @param object $connection - napojení na databázi
  * @param integer $id - id daného žáka
  * 
- * @return void
+ * @return boolean true, pokud se vymazání povedlo, jinak false
  */
 
-function deleteStudent($connection, $id){
+function deleteStudent($connection, $id)
+{
     $sql = "DELETE 
             FROM student 
             WHERE id = ?";
-    
+
     $stmt = mysqli_prepare($connection, $sql);
 
     if (!$stmt) {
@@ -97,8 +98,8 @@ function deleteStudent($connection, $id){
     } else {
         mysqli_stmt_bind_param($stmt, "i", $id);
 
-        if (mysqli_stmt_execute($stmt)){
-            redirectUrl("/databaze/admin/zaci.php");
+        if (mysqli_stmt_execute($stmt)) {
+            return true;
         }
     }
 }
@@ -114,19 +115,20 @@ function deleteStudent($connection, $id){
  */
 
 
-function getALLStudents($connection, $columns = "*"){
+function getALLStudents($connection, $columns = "*")
+{
     $sql = "SELECT $columns 
             FROM student";
-    
+
     $result = mysqli_query($connection, $sql);
-    
-    
+
+
     if ($result === false) {
         echo mysqli_error($connection);
         return [];
     } else {
         $students = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        return $students;    
+        return $students;
     }
 }
 
@@ -141,30 +143,29 @@ function getALLStudents($connection, $columns = "*"){
  * @param string $life - Informace o žákovi
  * @param string $college - Kolej žáka
  * 
- * @return void
+ * @return integer id nově vytvořeného žáka
  * 
  */
 
-function createStudent($connection, $first_name, $second_name, $age, $life, $college){
+function createStudent($connection, $first_name, $second_name, $age, $life, $college)
+{
     $sql = "INSERT INTO student (first_name, second_name, age, life, college )
     VALUES (?, ?, ?, ?, ?)";
 
-    
-   
-   $statement = mysqli_prepare($connection, $sql);
-   if ($statement === false) {
-    echo mysqli_error($connection);
+
+
+    $statement = mysqli_prepare($connection, $sql);
+    if ($statement === false) {
+        echo mysqli_error($connection);
     } else {
-    mysqli_stmt_bind_param($statement, "ssiss", $first_name, $second_name, $age, $life, $college);
+        mysqli_stmt_bind_param($statement, "ssiss", $first_name, $second_name, $age, $life, $college);
 
 
-    if(mysqli_stmt_execute($statement)) {
-        $id = mysqli_insert_id($connection);
-
-        redirectUrl("/databaze/admin/jeden-zak.php?id=$id");
-
-    } else {
-        echo mysqli_stmt_error($statement);
+        if (mysqli_stmt_execute($statement)) {
+            $id = mysqli_insert_id($connection);
+            return $id;
+        } else {
+            echo mysqli_stmt_error($statement);
+        }
     }
-}
 }

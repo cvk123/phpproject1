@@ -1,19 +1,22 @@
-<?php 
+<?php
 
 require "../assets/zak.php";
 require "../assets/database.php";
 require "../assets/auth.php";
+require "../assets/url.php";
 
-    session_start();
-    
-    if(!isLoggedIn()){
-        die("Musíš se přihlásit!");
-    }
+session_start();
+
+if (!isLoggedIn()) {
+    die("Musíš se přihlásit!");
+}
 
 $connection = connectionDB();
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    deleteStudent($connection, $_GET["id"]);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (deleteStudent($connection, $_GET["id"])) {
+        redirectUrl("/skola-project/admin/zaci.php");
+    };
 }
 
 ?>
@@ -46,7 +49,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <p>Jste si jisti, že chcete tohoto žáka smazat?</p>
                 <div class="buttons">
                     <button class="smazat">Smazat</button>
-                    <a class="zrusit" href="jeden-zak.php?id=<?= $_GET['id']?>">Zrušit</a>
+                    <a class="zrusit" href="jeden-zak.php?id=<?= $_GET['id'] ?>">Zrušit</a>
                 </div>
             </form>
         </section>

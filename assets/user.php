@@ -14,7 +14,8 @@
  * @return int|null - id nově vytvořeného záznamu nebo null v případě chyby
  * 
  */
-function createUser($connection, $first_name, $second_name, $email, $password, $recaptchaSuccess) {
+function createUser($connection, $first_name, $second_name, $email, $password, $recaptchaSuccess)
+{
 
     // Kontrola, zda emailová adresa již existuje v databázi
     $existingEmailQuery = "SELECT id FROM user WHERE email = ?";
@@ -56,35 +57,33 @@ function createUser($connection, $first_name, $second_name, $email, $password, $
  * 
  */
 
-function authentication($connection, $log_email, $log_password){
+function authentication($connection, $log_email, $log_password)
+{
     $sql = "SELECT password FROM user WHERE email = ?";
-    $stmt = mysqli_prepare($connection, $sql);  
-    
-    if($stmt) {
+    $stmt = mysqli_prepare($connection, $sql);
+
+    if ($stmt) {
         mysqli_stmt_bind_param($stmt, "s", $log_email);
-        
-        if(mysqli_stmt_execute($stmt)){
+
+        if (mysqli_stmt_execute($stmt)) {
             $result = mysqli_stmt_get_result($stmt);
-            
-            if($result->num_rows != 0) {
-                 $password_database = mysqli_fetch_row($result);
-                 $user_password_database = $password_database[0];
-            
-                if($user_password_database) {
+
+            if ($result->num_rows != 0) {
+                $password_database = mysqli_fetch_row($result);
+                $user_password_database = $password_database[0];
+
+                if ($user_password_database) {
                     return password_verify($log_password, $user_password_database);
                 }
-
-            
-           
             } else {
-               return false; 
+                return false;
             }
         } else {
-            return false; 
+            return false;
         }
     } else {
         echo "Error: " . mysqli_error($connection);
-        return false; 
+        return false;
     }
 }
 
@@ -100,19 +99,20 @@ function authentication($connection, $log_email, $log_password){
  */
 
 
- function getUserId($connection, $email) {
+function getUserId($connection, $email)
+{
     $sql = "SELECT id FROM user WHERE email = ?";
 
     $stmt = mysqli_prepare($connection, $sql);
 
-    if($stmt) {
+    if ($stmt) {
         mysqli_stmt_bind_param($stmt, "s", $email);
 
-        if(mysqli_stmt_execute($stmt)) {
+        if (mysqli_stmt_execute($stmt)) {
             $result = mysqli_stmt_get_result($stmt);
             $id = mysqli_fetch_row($result);
             $id_user = $id[0];
-            
+
             return $id_user[0];
         } else {
             return null;
@@ -121,4 +121,4 @@ function authentication($connection, $log_email, $log_password){
         echo "Error: " . mysqli_error($connection);
         return null;
     }
- }
+}

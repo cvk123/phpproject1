@@ -3,12 +3,13 @@
 require "../assets/database.php";
 require "../assets/zak.php";
 require "../assets/auth.php";
+require "../assets/url.php";
 
-    session_start();
-    
-    if(!isLoggedIn()){
-        die("Musíš se přihlásit!");
-    }
+session_start();
+
+if (!isLoggedIn()) {
+    die("Musíš se přihlásit!");
+}
 
 $first_name = null;
 $second_name = null;
@@ -25,9 +26,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $life = $_POST["life"];
     $college = $_POST["college"];
 
-    $connection = connectionDB();  
-    
-    createStudent($connection, $first_name, $second_name, $age, $life, $college);
+    $connection = connectionDB();
+
+    $id = createStudent($connection, $first_name, $second_name, $age, $life, $college);
+
+    if ($id) {
+        redirectUrl("/skola-project/admin/jeden-zak.php?id=$id");
+    } else {
+        echo "žák nebyl vytvořen";
+    }
 }
 
 

@@ -1,24 +1,39 @@
 <?php
+require "../assets/database.php";
+require "../assets/zak.php";
+require "../assets/auth.php";
+require "../assets/url.php";
 
+session_start();
 
-    require "../assets/database.php";
-    require "../assets/zak.php";
-    require "../assets/auth.php";
+if (!isLoggedIn()) {
+    die("Musíš se přihlásit!");
+}
 
-    session_start();
-    
-    if(!isLoggedIn()){
-        die("Musíš se přihlásit!");
-    }
+$connection = connectionDB();
+$first_name = '';
+$second_name = '';
+$age = '';
+$life = '';
+$college = '';
+$id = '';
 
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $first_name = $_POST["first_name"];
+    $second_name = $_POST["second_name"];
+    $age = $_POST["age"];
+    $life = $_POST["life"];
+    $college = $_POST["college"];
 
-    $connection = connectionDB();
-   
-
-    if ( isset($_GET["id"]) ){
+    if (udpateStudent($connection, $first_name, $second_name, $age, $life, $college, $id)) {
+        redirectUrl("/skola-project/admin/jeden-zak.php?id=$id");
+    };
+} else {
+    // Načtěte data žáka, pokud je k dispozici id v GET parametru
+    if (isset($_GET["id"])) {
         $one_student = getStudent($connection, $_GET["id"]);
 
-        if ( $one_student ){
+        if ($one_student) {
             $first_name = $one_student["first_name"];
             $second_name = $one_student["second_name"];
             $age = $one_student["age"];
@@ -28,24 +43,10 @@
         } else {
             die("Student nenalezen");
         }
-
-
     } else {
         die("Student nenalezen");
     }
-
-
-    if ($_SERVER["REQUEST_METHOD"] === "POST") {
-        $first_name = $_POST["first_name"];
-        $second_name = $_POST["second_name"];
-        $age = $_POST["age"];
-        $life = $_POST["life"];
-        $college = $_POST["college"];
-
-        udpateStudent($connection, $first_name, $second_name, $age, $life, $college, $id);
-    }
-
-
+}
 ?>
 
 

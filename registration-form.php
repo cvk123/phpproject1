@@ -1,6 +1,6 @@
 <?php
-    $queryString = $_SERVER['QUERY_STRING'];
-    parse_str($queryString, $parameters);
+$queryString = $_SERVER['QUERY_STRING'];
+parse_str($queryString, $parameters);
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +17,7 @@
     <link rel="cv icon" href="./img/logo.jpg" type="img">
     <script src="https://kit.fontawesome.com/2e503376a7.js" crossorigin="anonymous"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 
     <title>registration</title>
@@ -55,12 +56,23 @@
                         <div id="error-message"></div>
                         <input type="email" name="email" id="email" placeholder="Email@" required>
                     </div>
+                    <!-- HESLA verifaction  -->
                     <div class="form-group">
-                        <input type="password" name="password" placeholder="Zadejte heslo" required>
+                        <div class="password-container">
+                            <input type="password" name="password" id="login-password" placeholder="Zadejte heslo" required>
+                            <i class="fa-solid fa-eye" id="show-password"></i>
+                        </div>
                     </div>
+
                     <div class="form-group">
-                        <input type="password" name="password1" placeholder="Zadejte heslo znovu" required>
+                        <div class="password-container">
+                            <input type="password" name="password1" placeholder="Zadejte heslo znovu" id="login-password1" required>
+                            <i class="fa-solid fa-eye" id="show-password1"></i>
+                        </div>
                     </div>
+                    <p class="result-text"></p>
+
+
                     <div class="row">
                         <div class="g-recaptcha" data-sitekey="6Lc-aTInAAAAAELxiD5TMq7KNjOVk_MT3GMaxM53">
                         </div>
@@ -78,6 +90,8 @@
     <script src="js/header.js"></script>
     <script src="js/particles.min.js"></script>
     <script src="js/stars.js"></script>
+    <script src="js/hidepw.js"></script>
+    <script src="js/passwordchecer.js"></script>
 
 
 </body>

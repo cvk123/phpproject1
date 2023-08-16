@@ -45,7 +45,7 @@
             </div>
         </section>
 
-        <p class="text">Zapomněl si heslo? Klikni <a class=" click" href=" resetpassword.php">zde</a></p>
+        <p class="text">Zapomněl si heslo? Klikni <a class=" click" href="forgetpassword.php">zde</a></p>
 
 
     </main>

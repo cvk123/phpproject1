@@ -1,0 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+@import url('https://fonts.googleapis.com/css2?family=Harry+Potter&display=swap');
+
+
+body {
+    background-color: #232741;
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+h1 {
+    margin-top: 300px;
+    font-size: 40px;
+    font-family: 'Harry Potter', sans-serif;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #AA8855;
+    position: relative;
+}
+
+.add-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+
+input[type="email"]{
+    width: 400px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+button {
+    position: absolute;
+    margin-top: 60px;
+    background-color: #AA8855;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px; 
+    margin-left: -250px;
+}
+
+button:hover {
+    background-color: #8C6E42;
+}
+
+label {
+    position: absolute;
+    margin-top: -22px;
+    color: #fff;
+    
+}
+
+

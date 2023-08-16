@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Harry+Potter&display=swap');
+
+body {
+    background-color: #232741;
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+    margin-top: 300px;
+    font-size: 40px;
+    font-family: 'Harry Potter', sans-serif;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #AA8855;
+    position: relative;
+}
+
+.add-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px; /* Mezera nad formulářem */
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px; /* Mezera mezi jednotlivými elementy */
+}
+
+input[type="password"],
+button {
+    width: 400px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+button {
+    background-color: #AA8855;
+    color: #fff;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+button:hover {
+    background-color: #8C6E42;
+}
+
+label {
+    margin-bottom: 5px; /* Mezera pod labely */
+    color: #fff;
+}

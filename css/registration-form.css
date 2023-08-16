@@ -83,3 +83,46 @@ span.error {
     font-size: 18px;
     font-weight: bold;
 }
+
+.fa-eye-slash {
+    position: absolute;
+    top: 30%;
+    right: 3%;
+    cursor: pointer !important;
+}
+
+.password-container{
+    position: relative;
+}
+
+.fa-eye-slash {
+    position: absolute;
+    top: 30%;
+    right: 3%;
+    cursor: pointer !important;
+}
+
+.password-container{
+    position: relative;
+}
+
+.fa-eye {
+    position: absolute;
+    top: 30%;
+    right: 3%;
+    color: lightgray;
+    cursor: pointer !important;
+}
+
+.valid {
+    color: green;
+    font-size: 24px;
+}
+
+.invalid {
+    color: red;
+    font-size: 24px;
+}
+
+
+

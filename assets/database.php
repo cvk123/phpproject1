@@ -5,9 +5,10 @@
  *
  * @return object - pro připojení do databáze
  */
-function connectionDB() {
+function connectionDB()
+{
     $db_host = "127.0.0.1";
-    $db_user = "Pavel";
+    $db_user = "Pavel1";
     $db_password = "admin123";
     $db_name = "skola";
 
@@ -15,7 +16,7 @@ function connectionDB() {
     $connection = mysqli_connect($db_host, $db_user, $db_password, $db_name);
 
 
-    if (mysqli_connect_error()){
+    if (mysqli_connect_error()) {
         echo mysqli_connect_error();
         exit;
     }
