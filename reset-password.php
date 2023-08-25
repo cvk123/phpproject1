@@ -18,11 +18,11 @@ $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 
 if ($user === null) {
-    die("Neplatný nebo chybějící token pro reset hesla.");
+  die("Neplatný nebo chybějící token pro reset hesla.");
 }
 
 if (strtotime($user["reset_token_expires_at"]) <= time()) {
-    die("Token pro reset hesla vypršel.");
+  die("Token pro reset hesla vypršel.");
 }
 
 

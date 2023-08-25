@@ -1,4 +1,5 @@
 <?php
+
 require "../assets/database.php";
 require "../assets/zak.php";
 require "../assets/auth.php";
@@ -7,18 +8,30 @@ require "../assets/url.php";
 session_start();
 
 if (!isLoggedIn()) {
-    die("Musíš se přihlásit!");
+    die("Nepovolený přístup");
 }
 
 $connection = connectionDB();
-$first_name = '';
-$second_name = '';
-$age = '';
-$life = '';
-$college = '';
-$id = '';
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+if (isset($_GET["id"])) {
+    $one_student = getStudent($connection, $_GET["id"]);
+
+    if ($one_student) {
+        $first_name = $one_student["first_name"];
+        $second_name = $one_student["second_name"];
+        $age = $one_student["age"];
+        $life = $one_student["life"];
+        $college = $one_student["college"];
+        $id = $one_student["id"];
+    } else {
+        die("Student nenalezen");
+    }
+} else {
+    die("ID není zadáno, student nebyl nalezen");
+}
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $first_name = $_POST["first_name"];
     $second_name = $_POST["second_name"];
     $age = $_POST["age"];
@@ -28,25 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (udpateStudent($connection, $first_name, $second_name, $age, $life, $college, $id)) {
         redirectUrl("/skola-project/admin/jeden-zak.php?id=$id");
     };
-} else {
-    // Načtěte data žáka, pokud je k dispozici id v GET parametru
-    if (isset($_GET["id"])) {
-        $one_student = getStudent($connection, $_GET["id"]);
-
-        if ($one_student) {
-            $first_name = $one_student["first_name"];
-            $second_name = $one_student["second_name"];
-            $age = $one_student["age"];
-            $life = $one_student["life"];
-            $college = $one_student["college"];
-            $id = $one_student["id"];
-        } else {
-            die("Student nenalezen");
-        }
-    } else {
-        die("Student nenalezen");
-    }
 }
+
 ?>
 
 
