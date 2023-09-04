@@ -1,13 +1,13 @@
 <?php
 
-require "../assets/database.php";
-require "../assets/zak.php";
-require "../assets/auth.php";
-require "../assets/url.php";
+require "../classes/Database.php";
+require "../classes/Student.php";
+require "../classes/Auth.php";
+require "../classes/Url.php";
 
 session_start();
 
-if (!isLoggedIn()) {
+if (!Auth::isLoggedIn()) {
     die("Musíš se přihlásit!");
 }
 
@@ -26,12 +26,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $life = $_POST["life"];
     $college = $_POST["college"];
 
-    $connection = connectionDB();
+    $connection = (new Database())->connectionDB();
 
-    $id = createStudent($connection, $first_name, $second_name, $age, $life, $college);
+    $id = Student::createStudent($connection, $first_name, $second_name, $age, $life, $college);
 
     if ($id) {
-        redirectUrl("/skola-project/admin/jeden-zak.php?id=$id");
+        URL::redirectUrl("/skola-project/admin/jeden-zak.php?id=$id");
     } else {
         echo "žák nebyl vytvořen";
     }

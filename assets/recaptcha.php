@@ -1,14 +1,11 @@
 <?php
 
 /**
- * 
  * Recaptcha Ověření uživatele
- * 
  * @param string $response - reCAPTCHA odpověď
- * 
- * @return bool - true, pokud ověření reCAPTCHA bylo úspěšné, false, pokud ověření selhalo
- * 
+ * @return bool - true, pokud ověření reCAPTCHA bylo úspěšné, false, pokud  * ověření selhalo
  */
+
 function verifyRecaptcha($response) {
 
     $recaptchaSecretKey = '6Lc-aTInAAAAAFwHQloXyk6y2PPAE_IeEabP2Qxp';
@@ -40,4 +37,3 @@ function verifyRecaptcha($response) {
 }
 
 ?>
-

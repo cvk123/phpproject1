@@ -1,16 +1,17 @@
 <?php 
 
-require "../assets/url.php";
-require "../assets/database.php";
-require "../assets/user.php";
+require "../classes/Url.php";
+require "../classes/Database.php";
+require "../classes/User.php";
 require "../assets/recaptcha.php";
 
 session_start();
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $connection = connectionDB();
-    
+
+    $connection = (new Database())->connectionDB();
+
     $first_name = $_POST["first-name"];
     $second_name = $_POST["second-name"];
     $email = $_POST["email"];
@@ -22,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   
     
     // Vytvoření uživatele
-    $id = createUser($connection, $first_name, $second_name, $email, $password, $recaptchaSuccess);
+    $id = User::createUser($connection, $first_name, $second_name, $email, $password, $recaptchaSuccess);
     
     if (!empty($id)) {
         session_regenerate_id(true);
@@ -32,9 +33,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Nastavení ID uživatele
         $_SESSION["logged_in_user"] = $id;
     
-        redirectUrl("/skola-project/admin/zaci.php");
+        URL::redirectUrl("/skola-project/admin/zaci.php");
     } else {
-        redirectUrl("/skola-project/registration-form.php?error=register-failed");
+        URL::redirectUrl("/skola-project/registration-form.php?error=register-failed");
     }
     
 }

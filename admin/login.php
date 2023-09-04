@@ -1,27 +1,27 @@
 <?php 
 
-require "../assets/database.php";
-require "../assets/url.php";
-require "../assets/user.php";
+require "../classes/Database.php";
+require "../classes/Url.php";
+require "../classes/User.php";
 
 session_start();
 
 if($_SERVER ["REQUEST_METHOD"] == "POST") {
 	
-	$conn = connectionDB();
+	$connection = (new Database())->connectionDB();
 	
 		$log_email = $_POST["login-email"];
 		$log_password = $_POST["login-password"];
 		
 		
 
-		if (authentication($conn, $log_email, $log_password)){
-			$id = getUserId($conn, $log_email); 
+		if (User::authentication($connection, $log_email, $log_password)){
+			$id = User::getUserId($connection, $log_email); 
 
 			session_regenerate_id(true);
 			$_SESSION["is_logged_in"] = true;
 			$_SESSION["logged_in_user"] = $id;
-			redirectUrl("/skola-project/admin/zaci.php");
+			URL::redirectUrl("/skola-project/admin/zaci.php");
 			
 		} else{
 			$error = "Špatné přihlašovací údaje";	

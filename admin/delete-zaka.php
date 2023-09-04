@@ -1,21 +1,21 @@
 <?php
 
-require "../assets/zak.php";
-require "../assets/database.php";
-require "../assets/auth.php";
-require "../assets/url.php";
+require "../classes/Student.php";
+require "../classes/Database.php";
+require "../classes/Auth.php";
+require "../classes/Url.php";
 
 session_start();
 
-if (!isLoggedIn()) {
+if (!Auth::isLoggedIn()) {
     die("Musíš se přihlásit!");
 }
 
-$connection = connectionDB();
+$connection = (new Database())->connectionDB();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (deleteStudent($connection, $_GET["id"])) {
-        redirectUrl("/skola-project/admin/zaci.php");
+    if (Student::deleteStudent($connection, $_GET["id"])) {
+        URL::redirectUrl("/skola-project/admin/zaci.php");
     };
 }
 

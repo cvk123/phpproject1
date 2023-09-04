@@ -1,21 +1,20 @@
 <?php
-require __DIR__ . "/assets/database.php";
+require __DIR__ . "/classes/Database.php";
 
-$mysqli = connectionDB();
+$connection = (new Database())->connectionDB();
 
 $token = $_POST["token"];
 $token_hash = hash("sha256", $token);
 
 $sql = "SELECT *
-            FROM user
-            WHERE reset_token_hash = ?";
+        FROM user
+        WHERE reset_token_hash = :token_hash";
 
-$stmt = mysqli_prepare($mysqli, $sql);
-$stmt->bind_param("s", $token_hash);
+$stmt = $connection->prepare($sql);
+$stmt->bindParam(":token_hash", $token_hash, PDO::PARAM_STR);
 $stmt->execute();
 
-$result = $stmt->get_result();
-$user = $result->fetch_assoc();
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if ($user === null) {
     die("Neplatný nebo chybějící token pro reset hesla.");
@@ -40,14 +39,15 @@ if ($_POST["password"] !== $_POST["confirm_password"]) {
 $password_hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
 $sql = "UPDATE user
-        SET password = ?,
+        SET password = :password_hash,
             reset_token_hash = NULL,
             reset_token_expires_at = NULL
-        WHERE id = ?";
+        WHERE id = :user_id";
 
-$stmt = mysqli_prepare($mysqli, $sql);
+$stmt = $connection->prepare($sql);
 
-$stmt->bind_param("si", $password_hash, $user["id"]);
+$stmt->bindParam(":password_hash", $password_hash, PDO::PARAM_STR);
+$stmt->bindParam(":user_id", $user["id"], PDO::PARAM_INT);
 $stmt->execute();
 
 echo "Heslo bylo změněno.";

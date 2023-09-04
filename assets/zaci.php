@@ -2,11 +2,11 @@
 
     require "../classes/Database.php";
     require "../classes/Student.php";
-    require "../classes/Auth.php";
+    require "../assets/auth.php";
 
     session_start();
     
-    if(!Auth::isLoggedIn()){
+    if(!isLoggedIn()){
         die("Musíš se přihlásit!");
     }
 

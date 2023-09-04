@@ -1,20 +1,20 @@
 <?php
 
-require "../assets/database.php";
-require "../assets/zak.php";
-require "../assets/auth.php";
-require "../assets/url.php";
+require "../classes/Database.php";
+require "../classes/Student.php";
+require "../classes/Auth.php";
+require "../classes/Url.php";
 
 session_start();
 
-if (!isLoggedIn()) {
+if (!Auth::isLoggedIn()) {
     die("Nepovolený přístup");
 }
 
-$connection = connectionDB();
+$connection = (new Database())->connectionDB();
 
 if (isset($_GET["id"])) {
-    $one_student = getStudent($connection, $_GET["id"]);
+    $one_student = Student::getStudent($connection, $_GET["id"]);
 
     if ($one_student) {
         $first_name = $one_student["first_name"];
@@ -38,8 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $life = $_POST["life"];
     $college = $_POST["college"];
 
-    if (udpateStudent($connection, $first_name, $second_name, $age, $life, $college, $id)) {
-        redirectUrl("/skola-project/admin/jeden-zak.php?id=$id");
+    if (Student::udpateStudent($connection, $first_name, $second_name, $age, $life, $college, $id)) {
+        URL::redirectUrl("/skola-project/admin/jeden-zak.php?id=$id");
     };
 }
 

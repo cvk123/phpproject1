@@ -1,6 +1,6 @@
 <?php
 
-require "../assets/url.php";
+require "../classes/Url.php";
 
 // Initialize the session.
 // If you are using session_name("something"), don't forget it now!
@@ -23,7 +23,7 @@ if (ini_get("session.use_cookies")) {
 session_destroy();
 
 // Přesměrovaní na úvodní straně
-redirectUrl("/skola-project/index.php");
+URL::redirectUrl("/skola-project/index.php");
 
 
 ?>

@@ -1,29 +1,29 @@
 <?php
-require __DIR__ . "/assets/database.php";
+require __DIR__ . "/classes/Database.php";
 
-$mysqli = connectionDB();
+$connection = (new Database())->connectionDB();
 
 $token = $_GET["token"];
 $token_hash = hash("sha256", $token);
 
 $sql = "SELECT *
-            FROM user
-            WHERE reset_token_hash = ?";
+        FROM user
+        WHERE reset_token_hash = :token_hash";
 
-$stmt = mysqli_prepare($mysqli, $sql);
-$stmt->bind_param("s", $token_hash);
+$stmt = $connection->prepare($sql);
+$stmt->bindValue(":token_hash", $token_hash, PDO::PARAM_STR);
 $stmt->execute();
 
-$result = $stmt->get_result();
-$user = $result->fetch_assoc();
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if ($user === null) {
-  die("Neplatný nebo chybějící token pro reset hesla.");
+if ($result === false) {
+    die("Neplatný nebo chybějící token pro reset hesla.");
 }
 
-if (strtotime($user["reset_token_expires_at"]) <= time()) {
-  die("Token pro reset hesla vypršel.");
+if (strtotime($result["reset_token_expires_at"]) <= time()) {
+    die("Token pro reset hesla vypršel.");
 }
+
 
 
 ?>

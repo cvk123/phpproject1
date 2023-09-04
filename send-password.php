@@ -9,21 +9,22 @@ $token_hash = hash("sha256", $token);
 
 $expiry = date("Y-m-d H:i:s", time() + 60 * 30);
 
-require __DIR__ . "/assets/database.php";
+require __DIR__ . "/classes/Database.php";
 
-$mysqli = new mysqli("localhost", "root", "", "skola");
+$db = (new Database())->connectionDB();
 
 $sql = "UPDATE user
-        SET reset_token_hash = ?,
-            reset_token_expires_at = ?
-        WHERE email = ?";
+        SET reset_token_hash = :token_hash,
+            reset_token_expires_at = :expiry
+        WHERE email = :email";
 
-$stmt = $mysqli->prepare($sql);
-$stmt->bind_param("sss", $token_hash, $expiry, $email);
+$stmt = $db->prepare($sql);
+$stmt->bindParam(":token_hash", $token_hash, PDO::PARAM_STR);
+$stmt->bindParam(":expiry", $expiry, PDO::PARAM_STR);
+$stmt->bindParam(":email", $email, PDO::PARAM_STR);
 $stmt->execute();
-$stmt->close();
 
-if ($mysqli->affected_rows) {
+if ($stmt->rowCount() > 0) {
     $mail = require __DIR__ . "/mailer.php";
 
     $mail->setFrom("cvocek123456@gmail.com");
@@ -37,7 +38,4 @@ if ($mysqli->affected_rows) {
     } catch (Exception $e) {
         echo "Email se nepodařilo odeslat. Chyba: {$mail->ErrorInfo}";
     }
-
-
-    echo "Zpráva odeslána. Zkontrolujte si email.";
 }
