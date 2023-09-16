@@ -2,11 +2,11 @@
 
     require "../classes/Database.php";
     require "../classes/Student.php";
-    require "../assets/auth.php";
+    require "../classes/Auth.php";
 
     session_start();
     
-    if(!isLoggedIn()){
+    if(!Auth::isLoggedIn()){
         die("Musíš se přihlásit!");
     }
 
@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../query/header-query.css">
     <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/zaci.css">
+    <link rel="stylesheet" href="../css/students.css">
     <script src="https://kit.fontawesome.com/2e503376a7.js" crossorigin="anonymous"></script>
     <link rel="cv icon" href="../img/logo.jpg" type="img">
     <title>Document</title>
@@ -58,7 +58,7 @@
                     <?php echo htmlspecialchars($one_student["first_name"]). " " .htmlspecialchars($one_student["second_name"]) ?>
                 </div>
                 <div class="table-cell">
-                    <a href="jeden-zak.php?id=<?= $one_student["id"] ?>" class="more-info">Více informací</a>
+                    <a href="one-student.php?id=<?= $one_student["id"] ?>" class="more-info">Více informací</a>
                 </div>
             </div>
             <?php endforeach ?>

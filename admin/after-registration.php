@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Nastavení ID uživatele
         $_SESSION["logged_in_user"] = $id;
     
-        URL::redirectUrl("/skola-project/admin/zaci.php");
+        URL::redirectUrl("/skola-project/admin/students.php");
     } else {
         URL::redirectUrl("/skola-project/registration-form.php?error=register-failed");
     }

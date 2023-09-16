@@ -15,7 +15,7 @@ $connection = (new Database())->connectionDB();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (Student::deleteStudent($connection, $_GET["id"])) {
-        URL::redirectUrl("/skola-project/admin/zaci.php");
+        URL::redirectUrl("/skola-project/admin/students.php");
     };
 }
 
@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <p>Jste si jisti, že chcete tohoto žáka smazat?</p>
                 <div class="buttons">
                     <button class="smazat">Smazat</button>
-                    <a class="zrusit" href="jeden-zak.php?id=<?= $_GET['id'] ?>">Zrušit</a>
+                    <a class="zrusit" href="one-student.php?id=<?= $_GET['id'] ?>">Zrušit</a>
                 </div>
             </form>
         </section>

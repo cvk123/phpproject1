@@ -35,7 +35,7 @@ if (isset($_GET["id"]) and is_numeric($_GET["id"])) {
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../query/header-query.css">
     <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/jeden-zak.css">
+    <link rel="stylesheet" href="../css/one-student.css">
     <script src="https://kit.fontawesome.com/2e503376a7.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
@@ -69,8 +69,8 @@ if (isset($_GET["id"]) and is_numeric($_GET["id"])) {
             </div>
             <?php endif ?>
             <section class="buttons">
-                <a href="editace-zaka.php?id=<?= $students['id'] ?>">Editovat</a>
-                <a class="smazat" href="delete-zaka.php?id=<?= $students['id'] ?>">Vymazat</a>
+                <a href="edit-student.php?id=<?= $students['id'] ?>">Editovat</a>
+                <a class="smazat" href="delete-student.php?id=<?= $students['id'] ?>">Vymazat</a>
             </section>
         </main>
 

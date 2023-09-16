@@ -8,41 +8,46 @@ require "../classes/Url.php";
 session_start();
 
 if (!Auth::isLoggedIn()) {
-    die("Musíš se přihlásit!");
+    die("Nepovolený přístup");
 }
 
-$first_name = null;
-$second_name = null;
-$age = null;
-$life = null;
-$college = null;
+$connection = (new Database())->connectionDB();
+
+if (isset($_GET["id"])) {
+    $one_student = Student::getStudent($connection, $_GET["id"]);
+
+    if ($one_student) {
+        $first_name = $one_student["first_name"];
+        $second_name = $one_student["second_name"];
+        $age = $one_student["age"];
+        $life = $one_student["life"];
+        $college = $one_student["college"];
+        $id = $one_student["id"];
+    } else {
+        die("Student nenalezen");
+    }
+} else {
+    die("ID není zadáno, student nebyl nalezen");
+}
 
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $first_name = $_POST["first_name"];
     $second_name = $_POST["second_name"];
     $age = $_POST["age"];
     $life = $_POST["life"];
     $college = $_POST["college"];
 
-    $connection = (new Database())->connectionDB();
-
-    $id = Student::createStudent($connection, $first_name, $second_name, $age, $life, $college);
-
-    if ($id) {
-        URL::redirectUrl("/skola-project/admin/jeden-zak.php?id=$id");
-    } else {
-        echo "žák nebyl vytvořen";
-    }
+    if (Student::udpateStudent($connection, $first_name, $second_name, $age, $life, $college, $id)) {
+        URL::redirectUrl("/skola-project/admin/one-student.php?id=$id");
+    };
 }
-
 
 ?>
 
 
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -55,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <link rel="stylesheet" href="../css/formular.css">
     <script src="https://kit.fontawesome.com/2e503376a7.js" crossorigin="anonymous"></script>
     <link rel="cv icon" href="../img/logo.jpg" type="img">
-    <title>Přidat žáka</title>
+    <title>Editovat žáka</title>
 </head>
 
 <body>
@@ -70,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <section class="add-form">
 
             <div class="container">
-                <h1>Přidej žáka</h1>
+                <h1>Editovat žáka</h1>
                 <?php require "../assets/formular-zak.php"; ?>
             </div>
         </section>

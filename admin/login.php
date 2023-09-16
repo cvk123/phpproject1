@@ -21,7 +21,7 @@ if($_SERVER ["REQUEST_METHOD"] == "POST") {
 			session_regenerate_id(true);
 			$_SESSION["is_logged_in"] = true;
 			$_SESSION["logged_in_user"] = $id;
-			URL::redirectUrl("/skola-project/admin/zaci.php");
+			URL::redirectUrl("/skola-project/admin/students.php");
 			
 		} else{
 			$error = "Špatné přihlašovací údaje";	

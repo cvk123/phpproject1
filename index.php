@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +22,7 @@
 
                 <div class="content">
                     <h1>Škola čar a kouzel v Bradavicích</h1>
-                    <a href="./admin/zaci.php">Seznam žáků</a>
+                    <a href="./admin/students.php">Seznam žáků</a>
                 </div>
 
 
