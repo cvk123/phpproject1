@@ -11,6 +11,8 @@ if (!Auth::isLoggedIn()) {
     die("Nepovolený přístup");
 }
 
+$role = $_SESSION["role"];
+
 $connection = (new Database())->connectionDB();
 
 if (isset($_GET["id"])) {
@@ -72,13 +74,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <main>
 
-        <section class="add-form">
 
+        <section class="add-form">
             <div class="container">
                 <h1>Editovat žáka</h1>
-                <?php require "../assets/formular-zak.php"; ?>
+                <?php 
+                if ($role == "admin") {
+                    require "../assets/formular-zak.php";
+                } else {
+                    echo "<p>Nemáte oprávnění</p>";
+                }
+                ?>
             </div>
         </section>
+
+
     </main>
 
     <?php require "../assets/footer.php"; ?>

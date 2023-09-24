@@ -11,6 +11,8 @@ if (!Auth::isLoggedIn()) {
     die("Musíš se přihlásit!");
 }
 
+$role = $_SESSION["role"];
+
 $connection = (new Database())->connectionDB();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -44,6 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php require "../assets/admin-header.php"; ?>
 
     <main>
+        <?php if ($role == "admin") : ?>
         <section class="delete-form">
             <form method="POST">
                 <p>Jste si jisti, že chcete tohoto žáka smazat?</p>
@@ -53,6 +56,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </form>
         </section>
+        <?php else : ?>
+        <section>
+            <p>Nemáte oprávnění</p>
+        </section>
+        <?php endif; ?>
     </main>
 
     <?php require "../assets/footer.php"; ?>

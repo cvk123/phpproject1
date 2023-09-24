@@ -45,6 +45,10 @@
         <h1>Seznam žáků školy</h1>
     </section>
 
+    <section class="filter">
+        <input type="text" class="filter-input" placeholder="Jméno žáka">
+    </section>
+
     <main>
 
 
@@ -72,7 +76,7 @@
     <script src="../js/header.js"></script>
     <script src="../js/particles.min.js"></script>
     <script src="../js/stars.js"></script>
-
+    <script src="../js/filter.js"></script>
 </body>
 
 </html>

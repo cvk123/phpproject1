@@ -16,6 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $second_name = $_POST["second-name"];
     $email = $_POST["email"];
     $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+    $role = "user";
     
     // Ověření reCAPTCHA
     $recaptchaResponse = $_POST['g-recaptcha-response'];
@@ -23,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   
     
     // Vytvoření uživatele
-    $id = User::createUser($connection, $first_name, $second_name, $email, $password, $recaptchaSuccess);
+    $id = User::createUser($connection, $first_name, $second_name, $email, $password, $recaptchaSuccess, $role);
     
     if (!empty($id)) {
         session_regenerate_id(true);
@@ -32,6 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["is_logged_in"] = true;
         // Nastavení ID uživatele
         $_SESSION["logged_in_user"] = $id;
+        // Nastavení role uživatele
+        $_SESSION["role"] = $role;
     
         URL::redirectUrl("/skola-project/admin/students.php");
     } else {

@@ -2,20 +2,21 @@
 
 class User {
 
-    public static function createUser($connection, $first_name, $second_name, $email, $password, $recaptchaSuccess) {
+    public static function createUser($connection, $first_name, $second_name, $email, $password, $recaptchaSuccess, $role) {
         // Pokračovat pouze pokud reCAPTCHA byla úspěšně ověřena
         if (!$recaptchaSuccess) {
             return null;
         }
 
-            $sql = "INSERT INTO user (first_name, second_name, email, password) 
-                    VALUES (:first_name, :second_name, :email, :password)";
+            $sql = "INSERT INTO user (first_name, second_name, email, password, role) 
+                    VALUES (:first_name, :second_name, :email, :password, :role)";
 
             $stmt = $connection->prepare($sql);
             $stmt->bindValue(":first_name", $first_name, PDO::PARAM_STR);
             $stmt->bindValue(":second_name", $second_name, PDO::PARAM_STR);
             $stmt->bindValue(":email", $email, PDO::PARAM_STR);
             $stmt->bindValue(":password", $password, PDO::PARAM_STR);
+            $stmt->bindValue(":role", $role, PDO::PARAM_STR);
 
         try {
             if ($stmt->execute()) {
@@ -70,6 +71,26 @@ class User {
         } catch (Exception $e) {
             error_log("Chyba u funkce getUserId, získaná data selhala\n", 3, "../errors/error.log");
             echo $e->getMessage();
+        }       
+    }
+
+    public static function getUserRole($connection, $id){
+        $sql = "SELECT role FROM user
+                WHERE id = :id";
+
+        $stmt = $connection->prepare($sql);
+        $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+
+        try {
+            if($stmt->execute()){
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                return $result["role"];
+            } else {
+                throw new Exception("Získání uživatelské role selhalo");
+            }
+        } catch (Exception $e) {
+            error_log("Chyba u funkce getUserRole\n", 3, "../errors/error.log");
+            echo "Typ chyby: " . $e->getMessage();
         }       
     }
 }

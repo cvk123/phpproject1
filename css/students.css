@@ -110,4 +110,26 @@ h1 {
     }
 }
 
-/* assdasasddadsa */
+.filter {
+    text-align: center;
+}
+
+.filter-input {
+    border: 2px solid #333; /* Barva ohraničení */
+    padding: 10px; /* Vnější odsazení */
+    font-size: 16px; /* Velikost písma */
+    border-radius: 5px; /* Zaoblené rohy */
+    width: 300px; /* Šířka inputu */
+    background-color: #fff; /* Barva pozadí */
+}
+
+/* Přidejte nějaký Harry Potter styl pro zvýraznění */
+.filter-input::placeholder {
+    color: #888; /* Barva textu placeholderu */
+    font-style: italic; /* Kursivní styl */
+}
+
+/* Vizuální efekt po najetí myší */
+.filter-input:hover {
+    border-color: #666; /* Barva ohraničení při najetí myší */
+}

@@ -59,14 +59,16 @@ parse_str($queryString, $parameters);
                     <!-- HESLA verifaction  -->
                     <div class="form-group">
                         <div class="password-container">
-                            <input type="password" name="password" id="login-password" placeholder="Zadejte heslo" required>
+                            <input type="password" name="password" id="login-password" placeholder="Zadejte heslo"
+                                required>
                             <i class="fa-solid fa-eye" id="show-password"></i>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="password-container">
-                            <input type="password" name="password1" placeholder="Zadejte heslo znovu" id="login-password1" required>
+                            <input type="password" name="password1" placeholder="Zadejte heslo znovu"
+                                id="login-password1" required>
                             <i class="fa-solid fa-eye" id="show-password1"></i>
                         </div>
                     </div>
@@ -85,6 +87,7 @@ parse_str($queryString, $parameters);
         </section>
     </main>
 
+
     <?php require "assets/footer.php"; ?>
 
     <script src="js/header.js"></script>
@@ -92,7 +95,6 @@ parse_str($queryString, $parameters);
     <script src="js/stars.js"></script>
     <script src="js/hidepw.js"></script>
     <script src="js/passwordchecer.js"></script>
-
 
 </body>
 

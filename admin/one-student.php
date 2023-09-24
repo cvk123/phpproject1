@@ -11,6 +11,8 @@ if (!Auth::isLoggedIn()) {
     die("Nepovolený přístup");
 }
 
+$role = $_SESSION["role"];
+
 // Connect to database
 $connection = (new Database())->connectionDB();
 
@@ -67,11 +69,16 @@ if (isset($_GET["id"]) and is_numeric($_GET["id"])) {
                 <p class="info-label">Kolej:</p>
                 <p class="info-value"><?= htmlspecialchars($students["college"]) ?></p>
             </div>
-            <?php endif ?>
+
+
+            <?php if ($role === "admin") : ?>
             <section class="buttons">
                 <a href="edit-student.php?id=<?= $students['id'] ?>">Editovat</a>
                 <a class="smazat" href="delete-student.php?id=<?= $students['id'] ?>">Vymazat</a>
             </section>
+            <?php endif ?>
+
+            <?php endif ?>
         </main>
 
         <?php require "../assets/footer.php"; ?>

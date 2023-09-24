@@ -3,9 +3,11 @@
     require "../classes/Auth.php";
     require "../classes/Image.php";
     require "../classes/Database.php";
-
+    require "../classes/Student.php";
 
     session_start();
+
+    $role = $_SESSION["role"];
 
     // If user is not logged in, redirect to login page
     if (!Auth::isLoggedIn()) {
@@ -42,6 +44,8 @@
 
     <?php require "../assets/admin-header.php"; ?>
 
+    <?php
+    if ($role === "admin") : ?>
     <main>
         <h1>Pictures</h1>
         <section class="upload-photos">
@@ -75,6 +79,9 @@
             </article>
         </section>
     </main>
+
+    <?php endif; ?>
+
 
     <?php require "../assets/footer.php"; ?>
 
